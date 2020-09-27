@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles, defaultTheme } from './utils';
+import { Layout, GameTitle, SecondaryButtonFixed, Scoreboard, RulesModal } from './components/shared';
+import GameProvider from './context/GameProvider';
+import Game from './components/screens/Game';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const App = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <GameProvider>
+        <Layout>
+          <GlobalStyles />
+          <GameTitle>
+            <Scoreboard />
+          </GameTitle>
+          <Game />
+          <SecondaryButtonFixed onClick={() => setModalOpen(true)}>Rules</SecondaryButtonFixed>
+          <RulesModal open={isModalOpen} onCloseModal={() => setModalOpen(false)}/>
+        </Layout>
+      </GameProvider>
+    </ThemeProvider>
+  )
+};
+
+ReactDOM.render(<App />, document.querySelector('#root'));
