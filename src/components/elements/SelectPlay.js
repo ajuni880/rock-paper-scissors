@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Container, Plays } from '../shared';
-import { GameContext } from '../../context/GameProvider';
+import { withGame } from '../../context/GameProvider';
 import { setComputer, setPlayer, setScreen } from '../../hooks/useGame';
 import { computerPlay } from '../../lib';
 
@@ -25,14 +25,14 @@ const PlayWrapper = styled.div`
   height: 9rem;
 `;
 
-export default () => {
-  const context = useContext(GameContext);
+const SelectPlay = ({ game }) => {
+  const { updateState } = game;
 
   const handleClick = (play) => {
     const compPlay = computerPlay();
-    context.updateState(setPlayer({ play }));
-    context.updateState(setComputer({ play:  compPlay }))
-    context.updateState(setScreen(2));
+    updateState(setPlayer({ play }));
+    updateState(setComputer({ play:  compPlay }))
+    updateState(setScreen(2));
   }
 
   const props = {
@@ -56,3 +56,5 @@ export default () => {
     </Container>
   );
 }
+
+export default withGame(SelectPlay);

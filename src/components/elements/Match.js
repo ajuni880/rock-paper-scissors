@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Plays, Container, PrimaryButton, MatchResult } from '../shared';
-import { GameContext } from '../../context/GameProvider';
+import { withGame } from '../../context/GameProvider';
 import { EnumPlays, checkWinner, computeMathResult, EnumGameResultStates } from '../../lib';
 import { playAgain, updateScore } from '../../hooks/useGame';
 
@@ -30,8 +30,8 @@ function getSelectedPlay(p) {
 }
 
 
-export default () => {
-  const { state: { players }, updateState } = useContext(GameContext);
+const Match = ({ game }) => {
+  const { state: { players }, updateState } = game;
   const [matchResultVisible, setMatchResultVisible] = useState(false);
   const props = { borderWidth: 32, bottomShadow: '-2.6rem', innerShadow: '10px'};
   const PlayerPlay = getSelectedPlay(players.currentPlayer)
@@ -69,3 +69,5 @@ export default () => {
     </Container>
   );
 }
+
+export default withGame(Match);
