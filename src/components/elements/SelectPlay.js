@@ -9,6 +9,7 @@ const OptionsWrapper = styled.div`
   padding: 2rem 5rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
   justify-items: center;
 
   @media only screen and (max-width: ${props => props.theme.mqs.mobile}) {

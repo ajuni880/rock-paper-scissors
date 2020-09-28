@@ -14,10 +14,9 @@ const PlaysWrapper = styled.div`
   position: relative;
 
   @media only screen and (max-width: ${props => props.theme.mqs.mobile}) {
-    grid-template-columns: 0.5fr;
-    grid-template-rows: 13rem 13rem;
     justify-content: center;
-    height: auto;
+    height: 14rem;
+    padding: 2rem 1rem;
   }
 
   img {
@@ -30,7 +29,7 @@ const PlayWithTranslate = styled.div`
   transform: ${props => props.translate ? `translateX(${props.translate})` : 'none'};
 
   @media only screen and (max-width: ${props => props.theme.mqs.mobile}) {
-    transform: ${props => props.translate ? `translateY(${props.translate})` : 'none'};
+    transform: none !important;
   }
 `;
 
@@ -63,10 +62,10 @@ const Match = ({ game }) => {
   return (
     <Container>
       <PlaysWrapper>
-        <PlayWithTranslate translate={matchResultVisible ? '-20%' : ''}>
+        <PlayWithTranslate translate={matchResultVisible ? '-8rem' : ''}>
           <PlayerPlay {...props} />
         </PlayWithTranslate>
-        <PlayWithTranslate translate={matchResultVisible ? '20%' : ''}>
+        <PlayWithTranslate translate={matchResultVisible ? '8rem' : ''}>
           <ComputerPlay {...props} />
         </PlayWithTranslate>
 

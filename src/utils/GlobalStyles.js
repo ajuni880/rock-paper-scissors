@@ -16,4 +16,8 @@ export const GlobalStyles = createGlobalStyle`
     font-family: ${props => props.theme.fontFamily};
     background: linear-gradient(to top, ${props => props.theme.primaryColor}, ${props => props.theme.blue200});
   }
+
+  a {
+    color: inherit;
+  }
 `;

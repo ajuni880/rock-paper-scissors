@@ -16,7 +16,13 @@ export const Layout = ({ children }) => (
     <main>
       {children}
     </main>
-    <footer>Built by Junaid</footer>
+    <footer>
+      <a
+        href='https://github.com/ajuni880/rock-paper-scissors'
+        target='_blank'
+        rel='noopener noreferrer'
+      >Github</a>
+    </footer>
   </LayoutWrapper>
 );
 
