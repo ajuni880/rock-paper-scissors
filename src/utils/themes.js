@@ -1,5 +1,6 @@
 import { blue, neutral, yellow, red } from './colors';
 import { fontFamily } from './typography';
+import { mqs, borderRadius, containerWidth } from './styles';
 
 export const defaultTheme = {
   primaryColor: blue[300],
@@ -14,6 +15,7 @@ export const defaultTheme = {
   yellow100: yellow[100],
   yellow200: yellow[200],
   fontFamily,
-  borderRadius: '8px',
-  container: '600px'
+  borderRadius,
+  container: containerWidth,
+  mqs
 }

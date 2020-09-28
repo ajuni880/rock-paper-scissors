@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Plays, Container, PrimaryButton, MatchResult } from '../shared';
 import { withGame } from '../../context/GameProvider';
@@ -13,6 +13,13 @@ const PlaysWrapper = styled.div`
   padding: 2rem 0;
   position: relative;
 
+  @media only screen and (max-width: ${props => props.theme.mqs.mobile}) {
+    grid-template-columns: 0.5fr;
+    grid-template-rows: 13rem 13rem;
+    justify-content: center;
+    height: auto;
+  }
+
   img {
     width: 50%;
   }
@@ -21,6 +28,10 @@ const PlaysWrapper = styled.div`
 const PlayWithTranslate = styled.div`
   transition: transform .1s cubic-bezier(.12,.61,.42,.61);
   transform: ${props => props.translate ? `translateX(${props.translate})` : 'none'};
+
+  @media only screen and (max-width: ${props => props.theme.mqs.mobile}) {
+    transform: ${props => props.translate ? `translateY(${props.translate})` : 'none'};
+  }
 `;
 
 function getSelectedPlay(p) {
@@ -46,15 +57,16 @@ const Match = ({ game }) => {
   useEffect(() => {
     setMatchResultVisible(true);
     if (winner !== EnumGameResultStates.draw) updateState(updateScore(winner));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Container>
       <PlaysWrapper>
-        <PlayWithTranslate translate={matchResultVisible ? '-100px' : ''}>
+        <PlayWithTranslate translate={matchResultVisible ? '-20%' : ''}>
           <PlayerPlay {...props} />
         </PlayWithTranslate>
-        <PlayWithTranslate translate={matchResultVisible ? '100px' : ''}>
+        <PlayWithTranslate translate={matchResultVisible ? '20%' : ''}>
           <ComputerPlay {...props} />
         </PlayWithTranslate>
 

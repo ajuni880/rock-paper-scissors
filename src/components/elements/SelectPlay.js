@@ -11,11 +11,18 @@ const OptionsWrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   justify-items: center;
 
+  @media only screen and (max-width: ${props => props.theme.mqs.mobile}) {
+    padding: 2rem 2rem;
+  }
+
   div:nth-child(3) {
     margin-top: 1rem;
     div {
       position: relative;
       left: 7rem;
+      @media only screen and (max-width: ${props => props.theme.mqs.mobile}) {
+        left: 5rem;
+      }
     }
   }
 `;

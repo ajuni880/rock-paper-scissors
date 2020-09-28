@@ -11,6 +11,10 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+
+  @media only screen and (max-width: ${props => props.theme.mqs.mobile}) {
+    margin: 1.5rem;
+  }
 `;
 
 const TitleWrapper = styled.h1`
