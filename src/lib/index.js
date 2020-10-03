@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators */
 export const EnumPlays = {
   rock: 1,
   paper: 2,

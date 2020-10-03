@@ -1,5 +1,6 @@
 {
   "name": "rock-paper-scissors",
+  "description": "Rock paper scissors game",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -35,5 +36,8 @@
   },
   "devDependencies": {
     "source-map-explorer": "^2.5.0"
+  },
+  "author": {
+    "name": "Junaid Aslam"
   }
 }
