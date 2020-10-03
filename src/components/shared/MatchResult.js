@@ -10,6 +10,11 @@ const MatchResultWrapper = styled.div`
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
+
+  @media screen and (max-width: ${props => props.theme.mqs.mobile}) {
+    position: fixed;
+    top: 65vh;
+  }
 `;
 
 const DisplayWinner = styled.h3`

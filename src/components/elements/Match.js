@@ -15,7 +15,7 @@ const PlaysWrapper = styled.div`
 
   @media only screen and (max-width: ${props => props.theme.mqs.mobile}) {
     justify-content: center;
-    height: 14rem;
+    height: 13rem;
     padding: 2rem 1rem;
   }
 
@@ -30,6 +30,14 @@ const PlayWithTranslate = styled.div`
 
   @media only screen and (max-width: ${props => props.theme.mqs.mobile}) {
     transform: none !important;
+    > div {
+      border-width: 20px;
+      &:after {
+        bottom: -1.6rem;
+        height: calc(100% + 40px);
+        width: calc(100% + 40px);
+      }
+    }
   }
 `;
 
