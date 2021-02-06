@@ -1,8 +1,13 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Plays, Container, PrimaryButton, MatchResult } from '../shared';
 import { withGame } from '../../context/GameProvider';
-import { EnumPlays, checkWinner, computeMathResult, EnumGameResultStates } from '../../lib';
+import {
+  EnumPlays,
+  checkWinner,
+  computeMathResult,
+  EnumGameResultStates
+} from '../../lib';
 import { playAgain, updateScore } from '../../hooks/useGame';
 
 const PlaysWrapper = styled.div`
@@ -13,7 +18,7 @@ const PlaysWrapper = styled.div`
   padding: 2rem 0;
   position: relative;
 
-  @media only screen and (max-width: ${props => props.theme.mqs.mobile}) {
+  @media only screen and (max-width: ${(props) => props.theme.mqs.mobile}) {
     justify-content: center;
     height: 13rem;
     padding: 2rem 1rem;
@@ -25,10 +30,11 @@ const PlaysWrapper = styled.div`
 `;
 
 const PlayWithTranslate = styled.div`
-  transition: transform .1s cubic-bezier(.12,.61,.42,.61);
-  transform: ${props => props.translate ? `translateX(${props.translate})` : 'none'};
+  transition: transform 0.1s cubic-bezier(0.12, 0.61, 0.42, 0.61);
+  transform: ${(props) =>
+    props.translate ? `translateX(${props.translate})` : 'none'};
 
-  @media only screen and (max-width: ${props => props.theme.mqs.mobile}) {
+  @media only screen and (max-width: ${(props) => props.theme.mqs.mobile}) {
     transform: none !important;
     > div {
       border-width: 20px;
@@ -47,24 +53,30 @@ function getSelectedPlay(p) {
   else return Plays.Rock;
 }
 
-
 const Match = ({ game }) => {
-  const { state: { players }, updateState } = game;
+  const {
+    state: { player, computer },
+    updateState
+  } = game;
   const [matchResultVisible, setMatchResultVisible] = useState(false);
-  const props = { borderWidth: 32, bottomShadow: '-2.6rem', innerShadow: '10px'};
-  const PlayerPlay = getSelectedPlay(players.currentPlayer)
-  const ComputerPlay = getSelectedPlay(players.computer)
-  const winner = checkWinner(players.currentPlayer, players.computer);
+  const props = {
+    borderWidth: 32,
+    bottomShadow: '-2.6rem',
+    innerShadow: '10px'
+  };
+  const PlayerPlay = getSelectedPlay(player);
+  const ComputerPlay = getSelectedPlay(computer);
+  const winner = checkWinner(player, computer);
   const result = computeMathResult(winner);
 
   const handlePlayAgain = () => {
     updateState(playAgain());
-  }
+  };
 
   useEffect(() => {
     setMatchResultVisible(true);
     if (winner !== EnumGameResultStates.draw) updateState(updateScore(winner));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -77,16 +89,14 @@ const Match = ({ game }) => {
           <ComputerPlay {...props} />
         </PlayWithTranslate>
 
-        {
-          matchResultVisible && (
-            <MatchResult winner={result}>
-              <PrimaryButton onClick={handlePlayAgain}>Play again</PrimaryButton>
-            </MatchResult>
-          )
-        }
+        {matchResultVisible && (
+          <MatchResult winner={result}>
+            <PrimaryButton onClick={handlePlayAgain}>Play again</PrimaryButton>
+          </MatchResult>
+        )}
       </PlaysWrapper>
     </Container>
   );
-}
+};
 
 export default withGame(Match);
