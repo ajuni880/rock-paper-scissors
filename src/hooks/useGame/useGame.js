@@ -27,7 +27,6 @@ function reducer(state, action) {
         computer: { ...state.computer, ...action.payload }
       };
     case actions.UPDATE_SCORE:
-      debugger;
       const playerKey =
         action.payload === EnumGameResultStates.player ? 'player' : 'computer';
       const scorer = state[playerKey];
